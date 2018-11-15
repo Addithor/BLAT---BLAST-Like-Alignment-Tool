@@ -7,22 +7,21 @@ def mapQueryToGenome(index, k, query):
     hits = []
 
     # Roll through the query and append to the hits list
+    # Positive indexes indicate hits on the leading strand
+    # Negative indexes indicate hits on the lagging strand
     for i in range(len(query) - k + 1):
         if index.get(query[i: i+k]):
             hits = hits + index[query[i: i+k]]
         if index.get(reverse_complement(query[i: i+k])):
-            hits = hits + index[reverse_complement(query[i: i+k])]
+            for item in index[reverse_complement(query[i: i+k])]:
+                hits.append(-item)
     
-    return hits
-
+    print(type(hits[0]))
+    return sorted(hits)
 
 
 
 def reverse_complement(pattern):
-    """
-    Method that returns the reverse complement of a DNA sequence
-    1C page 12
-    """
     # Create a list that holds the reverse complement
     new_string = []
     # Create the pattern backwards

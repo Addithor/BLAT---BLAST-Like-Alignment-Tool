@@ -9,9 +9,7 @@ def createIndex(string, k):
     for i in range(0, len(string) - k + 1, k):
         if r.get(string[i: i+k]):
             r[string[i: i+k]].append(i)
-            print(i)
         else:
-            print(i)
             r[string[i: i+k]] = [i]
     
     return r
@@ -33,4 +31,4 @@ for key, value in sorted(index.items()):
 			print(', ', sep='', end = '')
 		print(value[j], end = '')
 	print('')
-    """
+"""

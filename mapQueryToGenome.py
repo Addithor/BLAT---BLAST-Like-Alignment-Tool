@@ -44,7 +44,7 @@ def reverse_complement(pattern):
 
 
 
-
+"""
 string = 'AAATTTCCCGGGAAATTT'
 k = 3
 
@@ -53,3 +53,4 @@ index = collections.defaultdict()
 index = createIndex(string, k)
 
 print(mapQueryToGenome(index, k, 'AAA'))
+"""

@@ -16,7 +16,6 @@ def mapQueryToGenome(index, k, query):
             for item in index[reverse_complement(query[i: i+k])]:
                 hits.append(-item)
     
-    print(type(hits[0]))
     return sorted(hits)
 
 
@@ -44,7 +43,7 @@ def reverse_complement(pattern):
 
 
 
-"""
+
 string = 'AAATTTCCCGGGAAATTT'
 k = 3
 
@@ -53,4 +52,3 @@ index = collections.defaultdict()
 index = createIndex(string, k)
 
 print(mapQueryToGenome(index, k, 'AAA'))
-"""

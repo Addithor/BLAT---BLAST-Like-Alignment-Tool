@@ -1,5 +1,4 @@
-import sys, collections, math, random
-import numpy as np
+import collections
 from indexGenome import createIndex
 
 def mapQueryToGenome(index, k, query):
@@ -12,15 +11,15 @@ def mapQueryToGenome(index, k, query):
     for i in range(len(query) - k + 1):
         if index.get(query[i: i+k]):
             hits = hits + index[query[i: i+k]]
-        if index.get(reverse_complement(query[i: i+k])):
-            for item in index[reverse_complement(query[i: i+k])]:
+        if index.get(reverseComplement(query[i: i+k])):
+            for item in index[reverseComplement(query[i: i+k])]:
                 hits.append(-item)
     
     return sorted(hits)
 
 
 
-def reverse_complement(pattern):
+def reverseComplement(pattern):
     # Create a list that holds the reverse complement
     new_string = []
     # Create the pattern backwards
@@ -43,7 +42,7 @@ def reverse_complement(pattern):
 
 
 
-
+"""
 string = 'AAATTTCCCGGGAAATTT'
 k = 3
 
@@ -52,3 +51,4 @@ index = collections.defaultdict()
 index = createIndex(string, k)
 
 print(mapQueryToGenome(index, k, 'AAA'))
+"""

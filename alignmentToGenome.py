@@ -1,22 +1,27 @@
-import sys, collections, math, random
-import numpy as np
+import collections
 
 def localAlignment(hom_area, string, gap):
     # Create an alignment matrix initialized with zeros
-    matrix = makeMatrix(len(hom_area), len(string))
+    matrix = makeMatrix(len(hom_area) + 1, len(string) + 1)
 
     high_score = 0
     opt_loc = (0,0)
+    
+    for i in range(1, len(hom_area) + 1):
+        matrix[i][0] = gap * i
+    
+    for j in range(1, len(string) + 1):
+        matrix[0][j] = gap * j
+    
 
     # Walk through the grid and fill in
-    for i in range(1, len(hom_area)):
-        for j in range(1, len(string)):
+    for i in range(1, len(hom_area) + 1):
+        for j in range(1, len(string) + 1):
             # recurrant definition of the matrix
             matrix[i][j] = max(
                 matrix[i][j-1] + gap,
                 matrix[i-1][j] + gap,
-                matrix[i-1][j-1] + similarityMatrix(hom_area[i], string[j]),
-                0
+                matrix[i-1][j-1] + similarityMatrix(hom_area[i-1], string[j-1]),
             )
 
             # Keep track of the cell with largest score
@@ -31,9 +36,7 @@ def makeMatrix(x, y):
     return [[0] * y for i in range(x)]
 
 def symbolToNumber(symbol):
-        """
-        Helper function for pattern_to_number
-        """
+        # Changes symbol to number
         if symbol == "A":
             return 0
         elif symbol == "C":
@@ -50,7 +53,7 @@ def similarityMatrix(symb1, symb2):
     num1 = symbolToNumber(symb1)
     num2 = symbolToNumber(symb2)
 
-    similarity_matrix = [[10, -1, -3, -4], [-1, 7, -5, -3], [-3, -5, 9, 0], [-4, -3, 0, 8]]
+    similarity_matrix = [[1, -3, -3, -3], [-3, 1, -3, -3], [-3, -3, 1, -3], [-3, -3, -3, 1]]
 
     return similarity_matrix[num1][num2]
 
@@ -59,34 +62,44 @@ def retrace(matrix, opt_loc, hom_area, string, gap):
     j = opt_loc[1]
     string1 = ''
     string2 = ''
+
+    print(opt_loc[0], opt_loc[1])
+
+    for x in matrix:
+        print(x)
     
-    # While the scor of the matrix is larger than 0 we continue backtracking
-    while i >= 0 and j >= 0:
-        if i > 0 and j > 0 and matrix[i][j] == matrix[i-1][j-1] + similarityMatrix(hom_area[i], string[j]):
-            string1 = hom_area[i] + string1
-            string2 = string[j] + string2
+    # While i and j are larger or equal to 0
+    while not(i <= 0 or j <= 0):
+        if matrix[i][j] == matrix[i-1][j-1] + similarityMatrix(hom_area[i-1], string[j-1]):
+            string1 = hom_area[i-1] + string1
+            string2 = string[j-1] + string2
             i -= 1
             j -= 1
-        elif i > 0 and matrix[i][j] == matrix[i-1][j] + gap:
+            
+        elif matrix[i][j] == matrix[i-1][j] + gap:
             string1 = hom_area[i] + string1
             string2 = '-' + string2
             i -= 1
-        else:
+            
+        elif matrix[i][j] == matrix[i][j-1] + gap:
             string1 = '-' + string1
             string2 = string[j] + string2
             j -= 1
-    
+        
+        else:
+            break
+            
     return string1, string2
 
 
 """
-stringA = 'ACTACAATATTCGA'
+stringA = 'ACTACCATATTCGA'
 
-stringB = 'ATCGCAATT'
+stringB = 'CACCATTC'
 
-result_local_alignment = localAlignment(stringA, stringB, -10)
+result_local_alignment = localAlignment(stringA, stringB, -1)
 
-results = retrace(result_local_alignment[2], result_local_alignment[1], stringA, stringB, -10)
+results = retrace(result_local_alignment[2], result_local_alignment[1], stringA, stringB, -1)
 
 print(results[0])
 print(results[1])

@@ -22,6 +22,7 @@ k = 3
 index = collections.defaultdict()
 
 index = createIndex(string, k)
+print(index)
 
 for key, value in sorted(index.items()):
 	print(key, '-> ', end = '')

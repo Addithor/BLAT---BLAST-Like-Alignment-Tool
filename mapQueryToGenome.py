@@ -1,3 +1,11 @@
+"""
+Þetta fall tekur inn lista af indexum (index) og query-ið
+(sem er listi í skránni output_queries.txt og kom úr readFASTA fallinu)
+
+"""
+
+
+
 import collections
 from indexGenome import createIndex
 

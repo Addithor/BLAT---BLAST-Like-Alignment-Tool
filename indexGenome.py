@@ -1,3 +1,18 @@
+"""
+Þetta fall býr til lista af indexum út frá subseq.fasta (genómið).
+
+Input: genómið (út frá subseq.fasta skránni)
+Output: listi af indexum (index)
+
+t.d.
+AAA -> 0, 12
+CCC -> 6
+GGG -> 9
+TTT -> 3
+
+"""
+
+
 import sys, collections, math, random
 import numpy as np
 
@@ -15,14 +30,19 @@ def createIndex(string, k):
     return r
 
 
-"""
+
 string = 'AAATTTCCCGGGAAA'
 k = 3
 
 index = collections.defaultdict()
 
 index = createIndex(string, k)
-print(index)
+
+#print(index)
+
+"""
+Þessi for-lykkja býr til listann á réttu formati
+"""
 
 for key, value in sorted(index.items()):
 	print(key, '-> ', end = '')
@@ -32,4 +52,4 @@ for key, value in sorted(index.items()):
 			print(', ', sep='', end = '')
 		print(value[j], end = '')
 	print('')
-"""
+

@@ -41,7 +41,7 @@ def callAlignment(genome, hits, query, gap, size_hom_area):
     return alignment, best_loc
 
 
-
+"""
 k = 3
 
 stringA = 'ACTACCATATTCGA'
@@ -58,3 +58,4 @@ results = callAlignment(stringA, hits, stringB, -1, 20)
 
 print(results[0])
 print(results[1])
+"""

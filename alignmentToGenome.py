@@ -62,12 +62,12 @@ def retrace(matrix, opt_loc, hom_area, string, gap):
     j = opt_loc[1]
     string1 = ''
     string2 = ''
-
+    """
     print(opt_loc[0], opt_loc[1])
 
     for x in matrix:
         print(x)
-    
+    """
     # While i and j are larger or equal to 0
     while not(i <= 0 or j <= 0):
         if matrix[i][j] == matrix[i-1][j-1] + similarityMatrix(hom_area[i-1], string[j-1]):

@@ -14,7 +14,7 @@ def mapQueryToGenome(index, k, query):
         if index.get(reverseComplement(query[i: i+k])):
             for item in index[reverseComplement(query[i: i+k])]:
                 hits.append(-item)
-    
+
     return sorted(hits)
 
 
@@ -25,7 +25,7 @@ def reverseComplement(pattern):
     # Create the pattern backwards
     backwards = pattern[::-1]
 
-    # Loop through each base in the reversed string and replace with the comlement basepair 
+    # Loop through each base in the reversed string and replace with the comlement basepair
     for base in backwards:
         if base == "A" or base == "a":
             new_string.append("T")
@@ -35,12 +35,10 @@ def reverseComplement(pattern):
             new_string.append("G")
         else:
             new_string.append("A")
-    
+
     new_string = ''.join(new_string)
 
     return new_string
-
-
 
 """
 string = 'AAATTTCCCGGGAAATTT'
@@ -49,6 +47,6 @@ k = 3
 index = collections.defaultdict()
 
 index = createIndex(string, k)
-
-print(mapQueryToGenome(index, k, 'AAA'))
-"""
+#print("indes is " +str(index))
+print(type(mapQueryToGenome(index, k, 'AAA')))
+""" 

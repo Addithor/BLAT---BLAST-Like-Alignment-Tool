@@ -11,7 +11,7 @@ def createIndex(string, k):
             r[string[i: i+k]].append(i)
         else:
             r[string[i: i+k]] = [i]
-    
+
     return r
 
 

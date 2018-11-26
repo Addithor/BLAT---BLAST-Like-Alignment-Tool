@@ -14,10 +14,10 @@ def callAlignment(genome, hits, query, gap, size_hom_area):
     temp_loc = 0
 
     for i in hits:
-        if i - dist < 0:
+        if abs(i) - dist < 0:
             hom_area = genome[0:abs(i)+dist]
             temp_loc = 0
-        elif i + dist > len(genome):
+        elif abs(i) + dist > len(genome):
             hom_area = genome[abs(i)-dist:len(genome)]
             temp_loc = abs(i)-dist
         else:
@@ -41,7 +41,7 @@ def callAlignment(genome, hits, query, gap, size_hom_area):
     return alignment, best_loc
 
 
-"""
+
 k = 3
 
 stringA = 'ACTACCATATTCGA'
@@ -58,4 +58,3 @@ results = callAlignment(stringA, hits, stringB, -1, 20)
 
 print(results[0])
 print(results[1])
-"""

@@ -8,16 +8,16 @@ def localAlignment(hom_area, string, gap):
     opt_loc = (0,0)
 
     import time
-    tstart=time.time()
+
     for i in range(1, len(hom_area) + 1):
         matrix[i][0] = gap * i
 
     for j in range(1, len(string) + 1):
         matrix[0][j] = gap * j
-    print(time.time() - tstart)
+
 
     print(len(hom_area))
-    tstart=time.time()
+
     # Walk through the grid and fill in
     for i in range(1, len(hom_area) + 1):
         for j in range(1, len(string) + 1):
@@ -32,7 +32,7 @@ def localAlignment(hom_area, string, gap):
             if matrix[i][j] >= high_score:
                 high_score = matrix[i][j]
                 opt_loc = (i,j)
-    print(time.time() - tstart)
+    
 
     return high_score, opt_loc, matrix
 

@@ -34,7 +34,7 @@ listOfHits13 = mapQueryToGenome(indexDict, k, querys[12])
 listOfHits14 = mapQueryToGenome(indexDict, k, querys[13])
 
 # returns the best alignment
-results1 = callAlignment(genome, listOfHits1, querys[0], -1, len(querys[0]))
+results1 = callAlignment(genome, listOfHits1, querys[0], -1, len(querys[0])*2)
 #print(results1)
 
 """

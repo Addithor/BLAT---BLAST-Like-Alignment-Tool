@@ -50,5 +50,5 @@ index = collections.defaultdict()
 
 index = createIndex(string, k)
 
-print(mapQueryToGenome(index, k, 'AAA'))
+hits = mapQueryToGenome(index, k, 'AAA'))
 """

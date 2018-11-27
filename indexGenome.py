@@ -11,7 +11,14 @@ def createIndex(string, k):
             r[string[i: i+k]].append(i)
         else:
             r[string[i: i+k]] = [i]
-    
+    remove = []
+    for key, value in r.items():
+        if len(value) > 10:
+            remove.append(key)
+
+    for i in remove:
+        del r[i]
+
     return r
 
 

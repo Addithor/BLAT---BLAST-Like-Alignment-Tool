@@ -13,9 +13,11 @@ def commonIndexes(index):
     for key, value in index.items():
         l[len(value)-1] += 1
     
-    for i in range(len(l)-1):
+    i = 0
+    while i < len(l):
         if l[i] == 0:
             del l[i]
+        i += 1
     
     
     plt.plot(l)

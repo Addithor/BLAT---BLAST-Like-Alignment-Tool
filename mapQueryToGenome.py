@@ -14,8 +14,26 @@ def mapQueryToGenome(index, k, query):
         if index.get(reverseComplement(query[i: i+k])):
             for item in index[reverseComplement(query[i: i+k])]:
                 hits.append(-item)
-    
-    return sorted(hits)
+
+    test = True
+    while test:
+        for i in hits:
+            for j in hits:
+                test = False
+                if not(i == j) and abs(abs(i) - abs(j)) < len(2 * query) and i < 0 and j < 0:
+                    hits.remove(i)
+                    hits.remove(j)
+                    hits.append(int(-(i+j)/2))
+                    test = True
+                    break
+                elif not(i == j) and abs(abs(i) - abs(j)) < len(query) and i > 0 and j > 0:
+                    hits.remove(i)
+                    hits.remove(j)
+                    hits.append(int((i+j)/2))
+                    test = True
+                    break
+
+    return sorted(removeDuplicates(hits))
 
 
 
@@ -40,15 +58,24 @@ def reverseComplement(pattern):
 
     return new_string
 
+def removeDuplicates(hits):
+    final_list = []
+    for num in hits:
+        if num not in final_list:
+            final_list.append(num)
+    return final_list
+
 
 
 """
-string = 'AAATTTCCCGGGAAATTT'
+string = 'ATGAGAAGAGATATGAGTTGTGAGAGAGTGAGAATGATGGAGGGAG'
 k = 3
 
 index = collections.defaultdict()
 
 index = createIndex(string, k)
 
-hits = mapQueryToGenome(index, k, 'AAA'))
+hits = mapQueryToGenome(index, k, 'AGAAA')
+
+print(hits)
 """

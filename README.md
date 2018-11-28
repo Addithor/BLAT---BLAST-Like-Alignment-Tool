@@ -56,9 +56,9 @@ End with an example of getting some data out of the algorithm.
 
 ## Creators
 
-* **Arnar Þór Björgvinsson** - *Initial work*
-* **Unnur Bjarnadóttir** - *Initial work*
-* **Sóley Lúðvíksdóttir** - *Tölvunarfræði*
+* **Arnar Þór Björgvinsson** - *Líffræði MS*
+* **Unnur Ása Bjarnadóttir** - *Tölvunarfræði BS*
+* **Sóley Lúðvíksdóttir** - *Tölvunarfræði BS*
 
 ## Author of the original algorithm
 

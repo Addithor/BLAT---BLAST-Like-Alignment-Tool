@@ -10,29 +10,44 @@ def mapQueryToGenome(index, k, query):
     # Negative indexes indicate hits on the lagging strand
     for i in range(len(query) - k + 1):
         if index.get(query[i: i+k]):
-            hits = hits + index[query[i: i+k]]
+            for item in index[query[i: i+k]]:
+                hits.append((item, item+1))
         if index.get(reverseComplement(query[i: i+k])):
             for item in index[reverseComplement(query[i: i+k])]:
-                hits.append(-item)
+                hits.append((-item, -item-1))
 
+    hits = sorted(removeDuplicates(hits))
+
+    # Remove lone-standing hits from hits list
+    i = 0
+    while i < len(hits):
+        if i < 1 and not(abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 100000):
+            hits.remove(hits[i])
+        elif i > len(hits) - 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 100000):
+            hits.remove(hits[i])
+        elif i < len(hits) - 1 and i >= 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 100000 or abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 100000):
+            hits.remove(hits[i])
+        i += 1
+ 
+    # Clusters hits together if they are too close
     test = True
     while test:
         for i in hits:
             for j in hits:
                 test = False
-                if not(i == j) and abs(abs(i) - abs(j)) < len(2 * query) and i < 0 and j < 0:
+                if i[0] > 0 and j[0] > 0 and i[0] < j[0] and abs(abs(i[1]) - abs(j[0])) < 500:
+                    hits.append((i[0], j[1]))
                     hits.remove(i)
                     hits.remove(j)
-                    hits.append(int(-(i+j)/2))
                     test = True
                     break
-                elif not(i == j) and abs(abs(i) - abs(j)) < len(query) and i > 0 and j > 0:
+                elif i[0] < 0 and j[0] < 0 and i[0] > j[0] and abs(abs(i[1]) - abs(j[0])) < 500:
+                    hits.append((i[1], j[0]))
                     hits.remove(i)
                     hits.remove(j)
-                    hits.append(int((i+j)/2))
                     test = True
                     break
-
+ 
     return sorted(removeDuplicates(hits))
 
 
@@ -59,6 +74,7 @@ def reverseComplement(pattern):
     return new_string
 
 def removeDuplicates(hits):
+    # Removes duplicates from lists
     final_list = []
     for num in hits:
         if num not in final_list:

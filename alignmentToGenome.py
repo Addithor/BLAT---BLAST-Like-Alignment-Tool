@@ -22,6 +22,7 @@ def localAlignment(hom_area, string, gap):
                 matrix[i][j-1] + gap,
                 matrix[i-1][j] + gap,
                 matrix[i-1][j-1] + similarityMatrix(hom_area[i-1], string[j-1]),
+                0
             )
 
             # Keep track of the cell with largest score

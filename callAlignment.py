@@ -1,11 +1,24 @@
+#
+# File name: callAlignment.py
+# Authors: Arnar Þór Björgvinsson, Unnur Ása Bjarnadóttir, Sóley Lúðvíksdóttir
+# Submission: 30.11.2018
+# Course: Töl504M
+# Instructor: Páll Melsted
+# 
+# =============================================================================
+"""Alignment is a tuple that contains the aligned strings as results, first string 
+   in the tuple is the genomic area and the second is the query. Best_score keeps 
+   track of the best possible alignment and best_loc keep track of localization 
+   of where alignment starts for the best alignment """
+# =============================================================================
+# Imports
+# =============================================================================
+
 from alignmentToGenome import localAlignment, retrace
 from mapQueryToGenome import mapQueryToGenome, reverseComplement
 from indexGenome import createIndex
 
-def callAlignment(genome, hits, query, gap):
-    # alignment is a tuple that contains the aligned strings as results, first string in the tuple is the genomic area and the secondis the query
-    # best_score keeps track of the best possible alignment
-    # best_loc keep track of localization of where alignment starts for best alignment
+def callAlignment(genome, hits, query, gap):    
     alignment = ()
     score = 0
     loc = 0

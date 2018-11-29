@@ -1,17 +1,23 @@
+#
+# File name: indexGenome.py
+# Authors: Arnar Þór Björgvinsson, Unnur Ása Bjarnadóttir, Sóley Lúðvíksdóttir
+# Submission: 30.11.2018
+# Course: Töl504M
+# Instructor: Páll Melsted
+# 
+# =============================================================================
+"""This function creates a dictionary that contains a key value pair, where the key 
+   is every k-mer from the genome and the value is the starting position of 
+   the k-mer in the genome. 
+   E.g.
+   AAA -> 0, 12
+   CCC -> 6
+   GGG -> 9
+   TTT -> 3
 """
-Þetta fall býr til lista af indexum út frá subseq.fasta (genómið).
-
-Input: genómið (út frá subseq.fasta skránni)
-Output: listi af indexum (index)
-
-t.d.
-AAA -> 0, 12
-CCC -> 6
-GGG -> 9
-TTT -> 3
-
-"""
-
+# =============================================================================
+# Imports
+# =============================================================================
 
 import sys, collections, math, random
 import numpy as np

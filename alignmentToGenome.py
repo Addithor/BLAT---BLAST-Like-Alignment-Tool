@@ -1,3 +1,16 @@
+#
+# File name: alignmentToGenome.py
+# Authors: Arnar Þór Björgvinsson, Unnur Ása Bjarnadóttir, Sóley Lúðvíksdóttir
+# Submission: 30.11.2018
+# Course: Töl504M
+# Instructor: Páll Melsted
+# 
+# =============================================================================
+"""We create an alignment matrix using local alignment"""
+# =============================================================================
+# Imports
+# =============================================================================
+
 import collections
 
 def localAlignment(hom_area, string, gap):

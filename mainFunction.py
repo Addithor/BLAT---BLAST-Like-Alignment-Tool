@@ -1,3 +1,17 @@
+#
+# File name: mainFunction.py
+# Authors: Arnar Þór Björgvinsson, Unnur Ása Bjarnadóttir, Sóley Lúðvíksdóttir
+# Submission: 30.11.2018
+# Course: Töl504M
+# Instructor: Páll Melsted
+# 
+# =============================================================================
+"""The main stage, where the magic happens! 
+"""
+# =============================================================================
+# Imports
+# =============================================================================
+
 from Bio.SeqIO.FastaIO import SimpleFastaParser
 from Bio import pairwise2
 

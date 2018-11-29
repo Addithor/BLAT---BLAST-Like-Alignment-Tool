@@ -1,10 +1,18 @@
+#
+# File name: mapQueryToGenome.py
+# Authors: Arnar Þór Björgvinsson, Unnur Ása Bjarnadóttir, Sóley Lúðvíksdóttir
+# Submission: 30.11.2018
+# Course: Töl504M
+# Instructor: Páll Melsted
+# 
+# =============================================================================
+"""This function goes trough the query string and appends hits to a list.
+   Hits are divided with - and + that indicate if they happen on a lagging or
+   a leading strand. Then they are clustered together.
 """
-Þetta fall tekur inn lista af indexum (index) og query-ið
-(sem er listi í skránni output_queries.txt og kom úr readFASTA fallinu)
-
-"""
-
-
+# =============================================================================
+# Imports
+# =============================================================================
 
 import collections
 from indexGenome import createIndex

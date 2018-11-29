@@ -38,6 +38,10 @@ To install Biopython, run this command:
 ```
 pip install biopython
 ```
+You also need to install a module called matplotlib, run this command:
+```
+pip install matplotlib
+```
 
 ### How to run the implementation
 

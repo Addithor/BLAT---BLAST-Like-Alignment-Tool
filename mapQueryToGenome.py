@@ -18,12 +18,45 @@ def mapQueryToGenome(index, k, query):
     # Negative indexes indicate hits on the lagging strand
     for i in range(len(query) - k + 1):
         if index.get(query[i: i+k]):
-            hits = hits + index[query[i: i+k]]
+            for item in index[query[i: i+k]]:
+                hits.append((item, item+1))
         if index.get(reverseComplement(query[i: i+k])):
             for item in index[reverseComplement(query[i: i+k])]:
-                hits.append(-item)
-    
-    return sorted(hits)
+                hits.append((-item, -item-1))
+
+    hits = sorted(removeDuplicates(hits))
+
+    # Remove lone-standing hits from hits list
+    i = 0
+    while i < len(hits):
+        if i < 1 and not(abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 100000):
+            hits.remove(hits[i])
+        elif i > len(hits) - 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 100000):
+            hits.remove(hits[i])
+        elif i < len(hits) - 1 and i >= 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 100000 or abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 100000):
+            hits.remove(hits[i])
+        i += 1
+ 
+    # Clusters hits together if they are too close
+    test = True
+    while test:
+        for i in hits:
+            for j in hits:
+                test = False
+                if i[0] > 0 and j[0] > 0 and i[0] < j[0] and abs(abs(i[1]) - abs(j[0])) < 500:
+                    hits.append((i[0], j[1]))
+                    hits.remove(i)
+                    hits.remove(j)
+                    test = True
+                    break
+                elif i[0] < 0 and j[0] < 0 and i[0] > j[0] and abs(abs(i[1]) - abs(j[0])) < 500:
+                    hits.append((i[1], j[0]))
+                    hits.remove(i)
+                    hits.remove(j)
+                    test = True
+                    break
+ 
+    return sorted(removeDuplicates(hits))
 
 
 
@@ -48,15 +81,25 @@ def reverseComplement(pattern):
 
     return new_string
 
+def removeDuplicates(hits):
+    # Removes duplicates from lists
+    final_list = []
+    for num in hits:
+        if num not in final_list:
+            final_list.append(num)
+    return final_list
+
 
 
 """
-string = 'AAATTTCCCGGGAAATTT'
+string = 'ATGAGAAGAGATATGAGTTGTGAGAGAGTGAGAATGATGGAGGGAG'
 k = 3
 
 index = collections.defaultdict()
 
 index = createIndex(string, k)
 
-print(mapQueryToGenome(index, k, 'AAA'))
+hits = mapQueryToGenome(index, k, 'AGAAA')
+
+print(hits)
 """

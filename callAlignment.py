@@ -8,7 +8,7 @@
 # =============================================================================
 """Alignment is a tuple that contains the aligned strings as results, first string 
    in the tuple is the genomic area and the second is the query. Best_score keeps 
-   track of the best possible alignment and best_loc keep track of localization 
+   track of the best possible alignment and best_loc keeps track of localization 
    of where alignment starts for the best alignment """
 # =============================================================================
 # Imports

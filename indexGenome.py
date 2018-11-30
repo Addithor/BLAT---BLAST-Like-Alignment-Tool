@@ -36,7 +36,7 @@ def createIndex(string, k):
     # Remove indexes that are too common
     remove = []
     for key, value in r.items():
-        if len(value) > 20:
+        if len(value) > 7:
             remove.append(key)
 
     for i in remove:

@@ -41,24 +41,25 @@ def callAlignment(genome, hits, query, gap):
 
             if i[0] < 0:
                 result_local_alignment = localAlignment(hom_area, reverse_complement_query, gap)
-                alignment = retrace(result_local_alignment[2], result_local_alignment[1], hom_area, query, gap)
+                alignment = retrace(result_local_alignment[2], result_local_alignment[1], hom_area, query, gap, temp_loc)
                 score = result_local_alignment[0]
                 loc = temp_loc
                 strand = 'B'
-                results.append((alignment, loc, score, strand))
+                results.append((alignment, score, strand, len(alignment[0])))
                 
             else:
                 result_local_alignment = localAlignment(hom_area, query, gap)
-                alignment = retrace(result_local_alignment[2], result_local_alignment[1], hom_area, query, gap)
+                alignment = retrace(result_local_alignment[2], result_local_alignment[1], hom_area, query, gap, temp_loc)
                 score = result_local_alignment[0]
                 loc = temp_loc
                 strand = 'F'
-                results.append((alignment, loc, score, strand))
+                results.append((alignment, score, strand, len(alignment[0])))
                 
     remove = []
+
     
     for item in results:
-        if item[2] < 50:
+        if item[1] < 50:
             remove.append(item)
     
     for item in remove:

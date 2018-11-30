@@ -71,7 +71,7 @@ def similarityMatrix(symb1, symb2):
 
     return similarity_matrix[num1][num2]
 
-def retrace(matrix, opt_loc, hom_area, string, gap):
+def retrace(matrix, opt_loc, hom_area, string, gap, loc_hom_area):
     i = opt_loc[0]
     j = opt_loc[1]
     string1 = ''
@@ -102,8 +102,10 @@ def retrace(matrix, opt_loc, hom_area, string, gap):
         
         else:
             break
-            
-    return string1, string2
+                
+    new_opt_loc = loc_hom_area + i
+
+    return string1, string2, new_opt_loc
 
 
 """

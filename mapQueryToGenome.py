@@ -37,34 +37,43 @@ def mapQueryToGenome(index, k, query):
     # Remove lone-standing hits from hits list
     i = 0
     while i < len(hits):
-        if i < 1 and not(abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 100000):
+        if i < 1 and not(abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 30000):
             hits.remove(hits[i])
-        elif i > len(hits) - 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 100000):
+        elif i > len(hits) - 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 30000):
             hits.remove(hits[i])
-        elif i < len(hits) - 1 and i >= 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 100000 or abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 100000):
+        elif i < len(hits) - 1 and i >= 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 30000 or abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 30000):
             hits.remove(hits[i])
         i += 1
  
     # Clusters hits together if they are too close
-    test = True
-    while test:
-        for i in hits:
-            for j in hits:
-                test = False
-                if i[0] > 0 and j[0] > 0 and i[0] < j[0] and abs(abs(i[1]) - abs(j[0])) < 500:
-                    hits.append((i[0], j[1]))
-                    hits.remove(i)
-                    hits.remove(j)
-                    test = True
-                    break
-                elif i[0] < 0 and j[0] < 0 and i[0] > j[0] and abs(abs(i[1]) - abs(j[0])) < 500:
-                    hits.append((i[1], j[0]))
-                    hits.remove(i)
-                    hits.remove(j)
-                    test = True
-                    break
+    i = 0
+    while i + 1 < len(hits):
+        if hits[i][0] > 0 and hits[i+1][0] > 0:
+            if hits[i][1] + 100 > hits[i+1][0]:
+                hits[i] = (hits[i][0], hits[i+1][1])
+                del hits[i+1]
+            else:
+                i += 1
+        elif hits[i][0] < 0 and hits[i+1][0] < 0:
+            if hits[i][1] + 100 > hits[i+1][0]:
+                hits[i] = (hits[i][0], hits[i+1][1])
+                del hits[i+1]
+            else:
+                i += 1
+        else:
+            i +=1
+        
+    
+    i = 0
+    
+    while i < len(hits):
+        if (abs(abs(hits[i][0]) - abs(hits[i][1]))) < 2:
+            del hits[i]
+        else:
+            i += 1
+
  
-    return sorted(removeDuplicates(hits))
+    return hits
 
 
 
@@ -96,18 +105,3 @@ def removeDuplicates(hits):
         if num not in final_list:
             final_list.append(num)
     return final_list
-
-
-
-"""
-string = 'ATGAGAAGAGATATGAGTTGTGAGAGAGTGAGAATGATGGAGGGAG'
-k = 3
-
-index = collections.defaultdict()
-
-index = createIndex(string, k)
-
-hits = mapQueryToGenome(index, k, 'AGAAA')
-
-print(hits)
-"""

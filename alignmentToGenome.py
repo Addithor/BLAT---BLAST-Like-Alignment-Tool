@@ -94,16 +94,3 @@ def retrace(matrix, opt_loc, hom_area, string, gap, loc_hom_area):
 
     return string1, string2, new_opt_loc
 
-
-"""
-stringA = 'ACTACCATATTCGA'
-
-stringB = 'CACCATTC'
-
-result_local_alignment = localAlignment(stringA, stringB, -1)
-
-results = retrace(result_local_alignment[2], result_local_alignment[1], stringA, stringB, -1)
-
-print(results[0])
-print(results[1])
-"""

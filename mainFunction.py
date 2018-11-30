@@ -20,11 +20,20 @@ indexDict = createIndex(genome, k)
 for i in range(len(querys)):
         listOfHits = mapQueryToGenome(indexDict, k, querys[i])
 
-        print(listOfHits)
         results = []
 
         results = callAlignment(genome, listOfHits, querys[i], -1)
+        if not results:
+                print('alignment not found!')
+                continue
 
+        print(end='\n')
+        print('block    score   start     span   end       strand')
+        print('--------------------------------------------------')
+
+        i = 1
         for item in results:
-                print(item, end='\n')
-                print('', end='\n')
+                print('{0:2d} {1:10d} {2:10d} {3:6d} {4:9d} {5} {6}' .format(i, item[1], item[0][2], item[3], item[0][2] + item[3], '   ', item[2], end='\n'))
+                i += 1
+
+        

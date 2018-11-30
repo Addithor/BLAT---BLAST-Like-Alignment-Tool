@@ -23,22 +23,3 @@ def createIndex(string, k):
 
     return r
 
-
-"""
-string = 'AAATTTCCCGGGAAA'
-k = 3
-
-index = collections.defaultdict()
-
-index = createIndex(string, k)
-print(index)
-
-for key, value in sorted(index.items()):
-	print(key, '-> ', end = '')
-	value = sorted(value)
-	for j in range(len(value)):
-		if j > 0:
-			print(', ', sep='', end = '')
-		print(value[j], end = '')
-	print('')
-"""

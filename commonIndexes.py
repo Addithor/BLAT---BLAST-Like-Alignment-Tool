@@ -23,7 +23,3 @@ def commonIndexes(index):
     plt.plot(l)
     plt.show()
 
-
-"""
-commonIndexes(createIndex('ATAATAATATATTATTTCACTACACTTATACATACAAACCTATAATAATATATTATTTCACTACACTTATACATACAAACCTCCC', 3))
-"""

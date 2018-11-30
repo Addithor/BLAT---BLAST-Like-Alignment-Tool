@@ -12,18 +12,19 @@ from commonIndexes import commonIndexes
 genome = readGenome("data/subseq.fasta")
 querys = readQuery("data/transcripts.fasta")
 
-k = 15
+k = 11
 indexDict = {}
 indexDict = createIndex(genome, k)
 #commonIndexes(indexDict)
 
 for i in range(len(querys)):
-    listOfHits = mapQueryToGenome(indexDict, k, querys[i])
+        listOfHits = mapQueryToGenome(indexDict, k, querys[i])
 
-    print(listOfHits)
+        print(listOfHits)
+        results = []
 
-    results = callAlignment(genome, listOfHits, querys[i], -1)
+        results = callAlignment(genome, listOfHits, querys[i], -1)
 
-    for item in results:
-        print(item, end='\n')
-        print('', end='\n')
+        for item in results:
+                print(item, end='\n')
+                print('', end='\n')

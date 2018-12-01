@@ -47,9 +47,8 @@ def mapQueryToGenome(index, k, query):
         else:
             i +=1
         
-    
+    # Remove hit if it is not within 100 bp of another hit -> two perfect hits needed to call alignment
     i = 0
-    
     while i < len(hits):
         if (abs(abs(hits[i][0]) - abs(hits[i][1]))) < 2:
             del hits[i]

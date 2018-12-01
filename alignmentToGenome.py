@@ -69,27 +69,25 @@ def retrace(matrix, opt_loc, hom_area, string, gap, loc_hom_area):
     for x in matrix:
         print(x)
     """
-    # While i and j are larger or equal to 0
+    # While i and j are larger or equal to 0 we continue retracing
     while not(i <= 0 or j <= 0):
         if matrix[i][j] == matrix[i-1][j-1] + similarityMatrix(hom_area[i-1], string[j-1]):
             string1 = hom_area[i-1] + string1
             string2 = string[j-1] + string2
             i -= 1
-            j -= 1
-            
+            j -= 1   
         elif matrix[i][j] == matrix[i-1][j] + gap:
             string1 = hom_area[i] + string1
             string2 = '-' + string2
-            i -= 1
-            
+            i -= 1          
         elif matrix[i][j] == matrix[i][j-1] + gap:
             string1 = '-' + string1
             string2 = string[j] + string2
-            j -= 1
-        
+            j -= 1   
         else:
             break
-                
+
+    # Where the alignment begins         
     new_opt_loc = loc_hom_area + i
 
     return string1, string2, new_opt_loc

@@ -1,7 +1,10 @@
 from indexGenome import createIndex
 import matplotlib.pyplot as plt
 
+
+
 def commonIndexes(index):
+    # Function that plots how many indexes occur have a certain number hits in the genome
     most_indexes = 0
 
     for key, value in index.items():
@@ -19,7 +22,8 @@ def commonIndexes(index):
             del l[i]
         i += 1
     
-    
+    plt.xlabel('number of hits in the genome')
+    plt.ylabel('number of k-mers')
     plt.plot(l)
     plt.show()
 

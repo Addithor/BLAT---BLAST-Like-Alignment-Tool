@@ -37,17 +37,9 @@ def makeMatrix(x, y):
     return [[0] * y for i in range(x)]
 
 def symbolToNumber(symbol):
-        # Changes symbol to number
-        if symbol == "A":
-            return 0
-        elif symbol == "C":
-            return 1
-        elif symbol == "G":
-            return 2
-        elif symbol == "T":
-            return 3
-        else:
-            raise ValueError("Invalid Symbol in string!")
+    # Changes symbol to number
+    symbols_dict = {'A': 0, 'C': 1, 'G': 2, 'T': 3}
+    return symbols_dict[symbol]
 
 def similarityMatrix(symb1, symb2):
     # Function that returns similarity between two symbols 
@@ -63,12 +55,7 @@ def retrace(matrix, opt_loc, hom_area, string, gap, loc_hom_area):
     j = opt_loc[1]
     string1 = ''
     string2 = ''
-    """
-    print(opt_loc[0], opt_loc[1])
-
-    for x in matrix:
-        print(x)
-    """
+    
     # While i and j are larger or equal to 0 we continue retracing
     while not(i <= 0 or j <= 0):
         if matrix[i][j] == matrix[i-1][j-1] + similarityMatrix(hom_area[i-1], string[j-1]):

@@ -43,7 +43,7 @@ pip install matplotlib
 
 The implementation is divided into functions that perform operations and functions that read in our data sets. The file mainFunction.py pulls everything together and returns the aligned strings, and where the alignment starts in the genome.
 
-Our data, transcripts.fasta and subseq.fasta are taken in as parameters in two different functions. readSubseqFile.py that returns a genome string from the subseq.fasta file and readTranscriptsFile.py that returns a list of queries from the transcripts.fasta file. This makes if easier to work with the given FASTA file format.  
+Our data, transcripts.fasta and subseq.fasta are taken in as parameters in two different functions. readSubseqFile.py that returns a genome string from the subseq.fasta file and readTranscriptsFile.py that returns a list of queries from the transcripts.fasta file. This makes it easier to work with the given FASTA file format.  
 
 To run:
 ```

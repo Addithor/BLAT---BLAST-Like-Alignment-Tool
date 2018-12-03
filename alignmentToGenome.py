@@ -17,7 +17,7 @@ def localAlignment(hom_area, string, gap):
     # Walk through the grid and fill in
     for i in range(1, len(hom_area) + 1):
         for j in range(1, len(string) + 1):
-            # recurrant definition of the matrix
+            # recurrent definition of the matrix
             matrix[i][j] = max(
                 matrix[i][j-1] + gap,
                 matrix[i-1][j] + gap,

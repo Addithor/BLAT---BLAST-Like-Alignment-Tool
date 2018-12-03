@@ -17,17 +17,6 @@ def mapQueryToGenome(index, k, query):
                 hits.append((-item, -item-1))
 
     hits = sorted(removeDuplicates(hits))
-
-    # Remove lone-standing hits from hits list
-    i = 0
-    while i < len(hits):
-        if i < 1 and not(abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 30000):
-            hits.remove(hits[i])
-        elif i > len(hits) - 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 30000):
-            hits.remove(hits[i])
-        elif i < len(hits) - 1 and i >= 1 and not(abs(abs(hits[i][0]) - abs(hits[i-1][0])) < 30000 or abs(abs(hits[i][0]) - abs(hits[i+1][0])) < 30000):
-            hits.remove(hits[i])
-        i += 1
  
     # Clusters hits together if they are too close
     i = 0

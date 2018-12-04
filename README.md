@@ -4,8 +4,6 @@ An implementation of BLAT, a sequence alignment algorithm that performs mRNA/DNA
 
 In order to do that, we have to follow a few steps. First of all, we have to create an index of all non-overlapping k-mers in the database to be able to scan through the query sequences. Secondly, we need to scan through each of the queries and create a dictionary that contains the indices of the positions of the hits between the genome and each query string. Lastly we need to find the positions of the best alignments, create an alignment matrix and return the aligned strings that have the best alignment to the genome.
 
-End with an example of getting some data out of the algorithm.
-
 ## Getting Started
 
 Option A: clone this repository and get a copy up and running on your local computer. Just hit the clone button and save the link to your clipboard. Then open your command prompt and navigate to the folder where you want to save the project, and type in these commands:
@@ -45,7 +43,7 @@ pip install matplotlib
 
 The implementation is divided into functions that perform operations and functions that read in our data sets. The file mainFunction.py pulls everything together and returns the aligned strings, and where the alignment starts in the genome.
 
-Our data, transcripts.fasta and subseq.fasta are taken in as parameters in two different functions. readSubseqFile.py that returns a genome string from the subseq.fasta file and readTranscriptsFile.py that returns a list of queries from the transcripts.fasta file. This makes if easier to work with the given FASTA file format.  
+Our data, transcripts.fasta and subseq.fasta are taken in as parameters in two different functions. readSubseqFile.py that returns a genome string from the subseq.fasta file and readTranscriptsFile.py that returns a list of queries from the transcripts.fasta file. This makes it easier to work with the given FASTA file format.  
 
 To run:
 ```

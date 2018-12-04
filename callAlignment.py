@@ -8,7 +8,6 @@ def callAlignment(genome, hits, query, gap):
     # best_loc keep track of localization of where alignment starts for best alignment
     alignment = ()
     score = 0
-    loc = 0
     reverse_complement_query = reverseComplement(query) 
     dist = 50
     temp_loc = 0
@@ -33,7 +32,6 @@ def callAlignment(genome, hits, query, gap):
             result_local_alignment = localAlignment(hom_area, reverse_complement_query, gap)
             alignment = retrace(result_local_alignment[2], result_local_alignment[1], hom_area, query, gap, temp_loc)
             score = result_local_alignment[0]
-            loc = temp_loc
             strand = '-'
             results.append((alignment, score, strand, len(alignment[0])))
         # If the hit is on the forward strand (+) perform the alignment as is
@@ -41,7 +39,6 @@ def callAlignment(genome, hits, query, gap):
             result_local_alignment = localAlignment(hom_area, query, gap)
             alignment = retrace(result_local_alignment[2], result_local_alignment[1], hom_area, query, gap, temp_loc)
             score = result_local_alignment[0]
-            loc = temp_loc
             strand = '+'
             results.append((alignment, score, strand, len(alignment[0])))
                 

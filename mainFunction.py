@@ -13,7 +13,7 @@ from commonIndexes import commonIndexes
 genome = readGenome("data/subseq.fasta")
 querys = readQuery("data/transcripts.fasta")
 
-k = 18
+k = 11
 indexDict = {}
 indexDict = createIndex(genome, k)
 #commonIndexes(indexDict)
